@@ -4,11 +4,12 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
+from rest_framework.generics import ListCreateAPIView, GenericAPIView
 from users.models import User
 from users.serializers import RegisterSerializer, LoginSerializer
 
 
-class RegisterViewSet(GenericViewSet):
+class RegisterViewSet(GenericAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
 
@@ -24,7 +25,7 @@ class RegisterViewSet(GenericViewSet):
         return Response(status=status.HTTP_200_OK)
 
 
-class LoginViewSet(GenericViewSet):
+class LoginViewSet(GenericAPIView):
     serializer_class = LoginSerializer
     permission_classes = [AllowAny]
 

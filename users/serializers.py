@@ -15,10 +15,20 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {"password": {'write_only': True}}
 
     def validate_password(self, attrs):
-        password_exists = User.objects.filter(password=attrs['password']).exists()
-        if password_exists:
-            return super().validate(attrs)
-        return 'password already exists'
+        password = attrs
+        if password:
+            password_exists = User.objects.filter(password=password).exists()
+            if password_exists:
+                return super().validate(attrs)
+        else:
+            return 'Invalid password'
+        return 'Password already exists'
+
+    # def validate_password(self, attrs):
+    #     password_exists = User.objects.filter(password=attrs['password']).exists()
+    #     if password_exists:
+    #         return super().validate(attrs)
+    #     return 'password already exists'
 
     def validate_username(self, attrs):
         try:
