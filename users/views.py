@@ -6,7 +6,7 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework.generics import ListCreateAPIView, GenericAPIView
 from users.models import User
-from users.serializers import RegisterSerializer, LoginSerializer
+from users.serializers import RegisterSerializer, LoginSerializer, DeleteSer
 
 
 class RegisterViewSet(GenericAPIView):
@@ -47,4 +47,12 @@ class LoginViewSet(GenericAPIView):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def list(self, request):
+        return Response(status=status.HTTP_200_OK)
+
+
+class Delete(GenericAPIView):
+    serializer_class = DeleteSer
+
+
+    def delete(self, request):
         return Response(status=status.HTTP_200_OK)

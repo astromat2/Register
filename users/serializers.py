@@ -62,3 +62,11 @@ class LoginSerializer(serializers.Serializer):
     class Meta:
         model = User
         fields = ["token"]
+
+
+class DeleteSer(serializers.Serializer):
+    username = serializers.CharField()
+
+    class Meta:
+        model = User
+
